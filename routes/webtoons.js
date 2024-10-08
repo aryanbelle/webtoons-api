@@ -3,7 +3,6 @@ const router = express.Router();
 const Webtoon = require('../models/webtoons');
 const { authenticateToken } = require('../middleware/auth');
 
-// GET all webtoons
 router.get('/', async (req, res) => {
   try {
     const webtoons = await Webtoon.find();
@@ -13,7 +12,6 @@ router.get('/', async (req, res) => {
   }
 });
 
-// GET a specific webtoon by ID
 router.get('/:id', async (req, res) => {
   try {
     const webtoon = await Webtoon.findById(req.params.id);
@@ -24,7 +22,6 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-// POST a new webtoon
 router.post('/', authenticateToken, async (req, res) => {
   const { title, description, characters } = req.body;
   const webtoon = new Webtoon({ title, description, characters });
@@ -36,8 +33,6 @@ router.post('/', authenticateToken, async (req, res) => {
   }
 });
 
-// DELETE a webtoon by ID
-// DELETE a webtoon by ID (requires JWT authentication)
 router.delete('/:id', authenticateToken, async (req, res) => {
   try {
     const webtoon = await Webtoon.findByIdAndDelete(req.params.id);
