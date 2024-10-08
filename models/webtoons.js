@@ -1,4 +1,3 @@
-// models/webtoons.js
 const mongoose = require('mongoose');
 
 const webtoonSchema = new mongoose.Schema({
